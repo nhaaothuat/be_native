@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/v1/auth", authRoute);
+app.use("/api/v1", authRoute);
 
 initDB().then(() => {
   app.listen(PORT, () => {
