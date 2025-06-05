@@ -28,7 +28,8 @@ export const Login = TryCatch(async (req, res) => {
   }
   
   const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: "10h" });
-  res.status(200).json({message:"Login Successfully",token})
+  let finalUser = {...user,token}
+  res.status(200).json({message:"Login Successfully",result:finalUser})
 });
 
 export const Register = TryCatch(async (req, res) => {
