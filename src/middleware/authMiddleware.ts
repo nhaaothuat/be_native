@@ -20,7 +20,7 @@ export const verifyToken = (
 
     const decodeValue = jwt.verify(
       token,
-      process.env.JWT_SEC as string
+      process.env.JWT_SECRET_KEY as string
     ) as JwtPayload;
 
     if (!decodeValue || !decodeValue.user) {
