@@ -34,8 +34,6 @@ export const verifyToken = (
     next();
   } catch (error:any) {
      console.log("JWT verification error: ", error);
-    res.status(401).json({
-      message: "Please Login - Jwt error",
-    });
+   
   }
 };
