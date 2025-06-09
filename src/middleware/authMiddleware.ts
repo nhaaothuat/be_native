@@ -30,10 +30,8 @@ export const verifyToken = (
       return;
     }
 
-    // req.user = decodeValue.user;
-    req.user = {
-  id: decodeValue.id,
-};
+    req.user = decodeValue.user;
+   
     next();
   } catch (error:any) {
      console.log("JWT verification error: ", error);

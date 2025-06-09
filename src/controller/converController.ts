@@ -12,7 +12,7 @@ export const converController = TryCatch(async(req,res)=>{
      SELECT c.id AS conversation_id, u.username AS paticipant_name, m.content AS last_message, m.created_at AS last_message_time
      FROM conversations c
      JOIN users u ON (u.id = c.participant_two AND u.id != ${userId})
-     LEFT JOIN LATERIAL(
+     LEFT JOIN LATERAL(
      SELECT content,created_at
      FROM messages
      WHERE conversation_id=c.id
