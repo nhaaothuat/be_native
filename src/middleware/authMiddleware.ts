@@ -16,21 +16,21 @@ export const verifyToken = (
       });
       return;
     }
-    const token = authHeader.split(" ")[1];
+    const token = authHeader.split(' ')[1];
 
     const decodeValue = jwt.verify(
       token,
       process.env.JWT_SECRET_KEY as string
     ) as JwtPayload;
 
-    if (!decodeValue || !decodeValue.user) {
+    if (!decodeValue ) {
       res.status(401).json({
         message: "Invalid token",
       });
       return;
     }
 
-    req.user = decodeValue.user;
+    req.user = { id: decodeValue.id };
    
     next();
   } catch (error:any) {
