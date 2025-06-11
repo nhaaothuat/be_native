@@ -42,7 +42,7 @@ io.on('connection',(socket)=>{
       const savedMessage = await saveMessage(conversationId,senderId,content)
       console.log("sendMessage: ");
       console.log(saveMessage);
-io.to(conversationId).emit("newMessage",saveMessage);
+io.to(conversationId).emit("newMessage",savedMessage);
     }catch(error){
       console.log(error);
     };
