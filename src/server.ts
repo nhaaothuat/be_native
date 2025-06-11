@@ -11,7 +11,7 @@ import { saveMessage } from "./controller/messageController.js";
 
 const PORT = process.env.PORT;
 const app = express();
-const httpServer = createServer();
+const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors:{
     origin:'*'
