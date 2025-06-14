@@ -14,13 +14,15 @@ ORDER BY m.created_at ASC
 res.json(results);
 })
 
-export const saveMessage = TryCatch(async(conversationId,senderId,content)=>{
-const results = await sql`
-INSERT INTO messages (conversation_id,sender_id,content)
-VALUES (${conversationId},${senderId},${content})
-RETURNING *
-`
-
-results[0]
-
-})
+export const saveMessage = async (
+  conversationId: string,
+  senderId: string,
+  content: string
+) => {
+  const results = await sql`
+    INSERT INTO messages (conversation_id, sender_id, content)
+    VALUES (${conversationId}, ${senderId}, ${content})
+    RETURNING *
+  `;
+  return results[0];
+};
