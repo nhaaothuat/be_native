@@ -36,13 +36,13 @@ io.on('connection',(socket)=>{
   })
 
   socket.on("sendMessage",async(message)=>{
-    const {conversationId,senderId,content}= message;
+    const {conversation_id,sender_id,content}= message;
 
     try{
-      const savedMessage = await saveMessage(conversationId,senderId,content)
+      const savedMessage = await saveMessage(conversation_id,sender_id,content)
       console.log("sendMessage: ");
-      console.log(saveMessage);
-io.to(conversationId).emit("newMessage",savedMessage);
+      console.log(savedMessage);
+io.to(conversation_id).emit("newMessage",savedMessage);
     }catch(error){
       console.log(error);
     };
