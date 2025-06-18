@@ -10,7 +10,7 @@ export const fetchAllMessageByConversationId = TryCatch(async (req, res) => {
   const results = await sql`
 SELECT c.id AS conversation_id,
   CASE
-    WHEN u1.id = ${userId} THEN u2.username
+    WHEN c.participant_one = ${userId} THEN u2.username
     ELSE u1.username
   END AS participant_name,
   m.content AS last_message,
@@ -28,6 +28,7 @@ LEFT JOIN LATERAL (
 WHERE c.participant_one = ${userId} OR c.participant_two = ${userId}
 ORDER BY m.created_at DESC;
 `;
+
 
   res.json(results);
 });
