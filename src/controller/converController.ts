@@ -27,13 +27,13 @@ export const converController = TryCatch(async(req,res)=>{
       FROM messages
       WHERE conversation_id = c.id
       ORDER BY created_at DESC
-      LIMIT 1
+    
     ) m ON true
     -- Chỉ lấy các cuộc hội thoại có user hiện tại tham gia
     WHERE c.participant_one = ${userId} OR c.participant_two = ${userId}
     ORDER BY m.created_at DESC NULLS LAST
   `;
 
-
+ //  LIMIT 1
      res.json(result);
 })
